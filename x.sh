@@ -27,9 +27,8 @@ aapt package -f -m \
 
 zipalign -v 4 bin/game.apk bin/game-aligned.apk
 
-apksigner sign --ks android.keystore --ks-key-alias android --ks-pass pass:android --key-pass pass:android bin/game-aligned.apk
+#apksigner sign --ks android.keystore --ks-key-alias android --ks-pass pass:android --key-pass pass:android bin/HelloWorld-aligned.apk
+
+jarsigner -storepass android -keypass android -keystore android.keystore bin/game-aligned.apk android
 
 cp bin/game-aligned.apk game.apk
-
-
-
