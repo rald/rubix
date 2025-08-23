@@ -13,9 +13,13 @@ aapt package -f -m \
 	-S res \
 	-I android-30.jar
 
-javac -cp android-30.jar -d obj $(find src -name '*.java')
+#javac -cp android-30.jar -d obj $(find src -name '*.java')
 
-d8 $(find obj -name '*.class') --lib android-30.jar --output output
+ecj -cp android-30.jar -d obj $(find src -name '*.java')
+
+# d8 $(find obj -name '*.class') --lib android-30.jar --output output
+
+dx --dex --output output/classes.dex obj
 
 aapt package -f -m \
 	-J gen \
